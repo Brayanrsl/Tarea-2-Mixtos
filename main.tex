@@ -1,0 +1,157 @@
+\documentclass{article}
+\usepackage{fancyhdr,lipsum}
+\pagestyle{fancy}
+\fancyhead[C]{\rule{.5\textwidth}{4\baselineskip}}% Add something BIG in the header
+\setlength{\headheight}{52pt}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{stmaryrd}
+\usepackage[mathscr]{euscript}
+% Cajas
+\usepackage{tcolorbox}
+\usepackage{tikz}
+% Comandos
+\newtheorem{teo}{Teorema}
+\newtheorem{prop}{Proposición}
+\newtheorem{pro}{Problema}
+\newcommand{\autor}{\textbf{Brayan Sandoval}}
+\newcommand{\asignatura}{\textbf{Álgebra II}}
+\newcommand{\tarea}{\textbf{Listado 2}}
+\newcommand{\fecha}{\textbf{\today}}
+\newcommand{\bs}{\boldsymbol}
+\newcommand{\dx}{\textup{d}x}
+\newcommand{\dt}{\textup{d}t}
+\newcommand{\DG}{\textup{DG}}
+\newcommand{\Th}{\mathscr{T}_{h}}
+\newcommand{\Hdiv}{H\left(\textup{div};\Omega\right)}
+\newcommand{\Hdivt}{H(\textup{div};\mathscr{T}_{h})}
+\providecommand{\Dt}[1]{\frac{\textup{d} #1}{\textup{d}t}}
+\providecommand{\Dx}[1]{\frac{\textup{d} #1}{\textup{d}x}}
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\salto}[1]{\left\llbracket#1\right\rrbracket}
+\providecommand{\prom}[1]{\left \{\!\left \{#1\right \}\!\right \}}
+\providecommand{\PI}[2]{\left\langle #1,#2  \right\rangle}
+\providecommand{\Pii}[2]{\left( #1,#2  \right)}
+\renewcommand{\theequation}{\roman{equation}}
+%texto
+\usepackage{lipsum} % Genera texto aleatorio
+\renewcommand*{\familydefault}{\sfdefault} % Letra mas bonita
+% Figuras
+\usepackage{graphicx}
+% Geometría
+\usepackage[left= 2 cm, right = 2 cm, top = 2 cm, bottom = 2 cm]{geometry}
+\usepackage{lastpage}
+% Color
+\usepackage{xcolor}
+\definecolor{azul}{RGB}{10,10,115}
+\definecolor{amarillo}{RGB}{255,204,0}
+\definecolor{rojo}{RGB}{247,0,30}
+% Encabezado
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{4pt} %Aumentar grosor linea encabezado
+\let\oldheadrule\headrule
+\renewcommand{\headrule}{\color{azul}\oldheadrule}
+\renewcommand{\footrulewidth}{4pt} %Aumentar grosor linea pie de pagina
+\let\oldfootrule\footrule
+\renewcommand{\footrule}{\color{azul}\oldfootrule}
+\rhead{\color{azul}\autor}
+\chead{\color{azul}\tarea}
+\lhead{\color{azul}\asignatura}
+\rfoot{\color{azul} \textbf{Pág. \thepage\ - \pageref{LastPage}}}
+\cfoot{}
+\lfoot{\color{azul}\fecha}
+% Titulo
+\title{\color{azul}\textbf{Álgebra II}\\
+	\textbf{Listado 2}}
+\author{\color{azul}\autor}
+\date{\color{azul}\fecha}
+\begin{document}
+\begin{pro}
+    Sean $\alpha,\beta\in \mathbb{R}$ un parámetro con el cual se define $A := \begin{pmatrix}
+            \alpha & \beta  & 0      & \beta  \\
+            \beta  & \alpha & \beta  & 0      \\
+            0      & \beta  & \alpha & \beta  \\
+            \beta  & 0      & \beta  & \alpha
+        \end{pmatrix}$. Determine para qué valores de $\alpha$ y $\beta$, $A$ es no singular.
+\end{pro}
+\begin{proof}[Solución]
+    Procederemos por casos:
+    \begin{itemize}
+        \item[$i$)] $\beta = 0$ y $\alpha \neq 0$. En este caso $A$ es una matriz triangular, entonces $\displaystyle\det\left(A\right) = \prod_{i=1}^{4}a_{ii} = \alpha^{4} \neq 0$. Por tanto, la matriz $A$ es no singular.
+        \item[$ii)$] $\beta\neq 0$ y $\alpha \neq 0$. Para este caso usaremos el siguiente teorema
+            \begin{tcolorbox}[title= \textbf{Teorema},colback=blue!4,colframe=blue!30!black!80,colbacktitle=blue!30!black!80]
+                $A\in \mathcal{M}_{n}(\mathbb{K})$ es invertible, si y sólo si, $\det(A)\neq 0.$
+            \end{tcolorbox}
+            Para obtener el determinante de $A$ haremos operaciones elementales por fila
+            \begin{align*}
+                 & \begin{pmatrix}
+                       \alpha & \beta  & 0      & \beta  \\
+                       \beta  & \alpha & \beta  & 0      \\
+                       0      & \beta  & \alpha & \beta  \\
+                       \beta  & 0      & \beta  & \alpha
+                   \end{pmatrix} \underset{\text{\Huge$\sim$}}{f_{2}\leftarrow f_{2}-f_{4}}
+                \begin{pmatrix}
+                    \alpha & \beta  & 0      & \beta   \\
+                    0      & \alpha & 0      & -\alpha \\
+                    0      & \beta  & \alpha & \beta   \\
+                    \beta  & 0      & \beta  & \alpha
+                \end{pmatrix} \underset{\text{\Huge$\sim$}}{f_{4}\leftarrow f_{4}-\frac{\beta}{\alpha}f_{1}}
+                \begin{pmatrix}
+                    \alpha & \beta                     & 0      & \beta                               \\
+                    0      & \alpha                    & 0      & -\alpha                             \\
+                    0      & \beta                     & \alpha & \beta                               \\
+                    0      & -\frac{\beta^{2}}{\alpha} & \beta  & \frac{\alpha^{2}-\beta^{2}}{\alpha}
+                \end{pmatrix} \\
+                 & \underset{\text{\Huge$\sim$}}{f_{3}\leftarrow f_{3}-\frac{\beta}{\alpha}f_{2}}
+                \begin{pmatrix}
+                    \alpha & \beta                     & 0      & \beta                               \\
+                    0      & \alpha                    & 0      & -\alpha                             \\
+                    0      & 0                         & \alpha & 2\beta                              \\
+                    0      & -\frac{\beta^{2}}{\alpha} & \beta  & \frac{\alpha^{2}-\beta^{2}}{\alpha}
+                \end{pmatrix}
+                \underset{\text{\Huge$\sim$}}{f_{4}\leftarrow f_{4}+\frac{\beta^{2}}{\alpha^{2}}f_{2}}
+                \begin{pmatrix}
+                    \alpha & \beta  & 0      & \beta                                \\
+                    0      & \alpha & 0      & -\alpha                              \\
+                    0      & 0      & \alpha & 2\beta                               \\
+                    0      & 0      & \beta  & \frac{\alpha^{2}-2\beta^{2}}{\alpha}
+                \end{pmatrix}                             \\
+                 & \underset{\text{\Huge$\sim$}}{f_{4}\leftarrow f_{4}-\frac{\beta}{\alpha}f_{3}}
+                \begin{pmatrix}
+                    \alpha & \beta  & 0      & \beta                                \\
+                    0      & \alpha & 0      & -\alpha                              \\
+                    0      & 0      & \alpha & 2\beta                               \\
+                    0      & 0      & 0      & \frac{\alpha^{2}-4\beta^{2}}{\alpha}
+                \end{pmatrix}.
+            \end{align*}
+            Usando el hecho que la matriz obtenida después del proceso de escalonamiento es triangular superior y dado que solo realizamos operaciones elementales del tipo $f_{i}\leftarrow f_{i}+ \lambda f_{j}$, donde $\lambda\in\mathbb{R}$ y $j,i\in\{1,2,3,4\}$, se obtiene que
+            \begin{align*}
+                \det(A) = \det\begin{pmatrix}
+                                       \alpha & \beta  & 0      & \beta                                \\
+                                       0      & \alpha & 0      & -\alpha                              \\
+                                       0      & 0      & \alpha & 2\beta                               \\
+                                       0      & 0      & 0      & \frac{\alpha^{2}-4\beta^{2}}{\alpha}
+                                   \end{pmatrix} = \alpha\cdot\alpha\cdot\alpha\cdot \frac{\alpha^{2}-(2\beta)^{2}}{\alpha} = \alpha^{2}(\alpha^{2}-(2\beta)^{2}) = \alpha^{2}(\alpha - 2\beta)(\alpha + 2\beta)
+            \end{align*}
+            Así, $A$ es no singular, si y sólo si, $\alpha \neq 2\beta$ y $\alpha \neq -2\beta$.
+        \item[$iii)$] Si $\alpha = 0$ y $\beta\neq 0$. En este caso la matriz tiene la forma
+            \begin{align*}
+                A = \begin{pmatrix}
+                             0     & \beta & 0     & \beta \\
+                             \beta & 0     & \beta & 0     \\
+                             0     & \beta & 0     & \beta \\
+                             \beta & 0     & \beta & 0
+                         \end{pmatrix}
+            \end{align*}
+            Luego, dado que las fila $1$ y $3$ son iguales, entonces $\det(A) = 0$ y por tanto $A$ es singular.
+        \item[$iv)$] $\alpha = \beta = 0$. Dado que $A$ es la matriz nula, $\det(A) = 0$, por tanto $A$ es singular.
+    \end{itemize}
+\end{proof}
+\end{document}
