@@ -1,2 +1,2 @@
-# Tarea-2-Mixtos
-En este repositorio se encuentra una presentación sobre el resultado de equivalencia para condiciones inf-sup que aparecen en problemas del tipo Babuska-Brezzi. 
+# Experimentos Para SOP
+En este repositorio se encuentran experimentos computacionales respectivos a una investigación sobre polinomios ortogonales. 
